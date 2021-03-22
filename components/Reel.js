@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {SYMBOL} from '../constants';
+import Symbol from './Symbol';
 
 export default class Reel extends Component {
   constructor(props) {
     super(props);
-    this.symbols = 'LKDFJLAKFJDJKALFJDP';
+    this.symbols = 'BBCDGLGLCCCLLDDMS777XDBL';
     this.symbolHeight = this.props.height / SYMBOL;
   }
 
@@ -20,7 +21,19 @@ export default class Reel extends Component {
           style={{
             width: this.props.width,
             height: this.symbols.length * this.symbolHeight,
-          }}></View>
+          }}>
+          {this.symbols.split('').map((el, idx) => {
+            return (
+              <Symbol
+                symbol={el}
+                key={idx}
+                index={idx}
+                width={this.props.width}
+                height={this.symbolHeight}
+              />
+            );
+          })}
+        </View>
       </View>
     );
   }
