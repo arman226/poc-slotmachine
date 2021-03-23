@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     height: 60,
     width: MAX_WIDTH,
     backgroundColor: 'black',
+    marginVertical: 10,
   },
   playContainer: {
     width: MAX_WIDTH,

@@ -10,21 +10,33 @@ export default class ReelSet extends Component {
       width: null,
       height: null,
     };
-
     this.reels = [];
+    this.reelsInMotion = null;
+    this.spinResults = [];
   }
 
   randomBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
+  evaluateResults = () => {};
+
   spin = () => {
+    this.reelsInMotion = REELS;
     for (let i = 0; i < REELS; i++) {
       this.reels[i].scrollByOffSet(
         this.randomBetween(
           4 * this.reels[i].symbols.length,
           5 * this.reels[i].symbols.length,
         ),
+        (reelIdx, results) => {
+          this.reelsInMotion -= 1;
+          this.spinResults[reelIdx] = results;
+
+          if (this.reelsInMotion === 0) {
+            this.evaluateResults();
+          }
+        },
       );
     }
   };
