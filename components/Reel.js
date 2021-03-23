@@ -19,9 +19,13 @@ export default class Reel extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log(this.reelSymbols);
-  }
+  highlightAtIndex = (index, highlight) => {
+    this.symbolRefs[this.position + index].setActive(highlight);
+  };
+
+  shakeAtIndex = index => {
+    this.symbolRefs[this.position + index].shake();
+  };
 
   scrollByOffSet = (offSet, callBack) => {
     this.symbolRefs[this.position + 1].setActive(true);
